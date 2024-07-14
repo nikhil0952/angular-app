@@ -1,11 +1,21 @@
 <div *ngIf="toggle === 1" class="">
     <app-todohead (addTodo)="addlist($event) "></app-todohead>
+    <div (click)="exportCSV()" class="flex justify-end pr-5 mb-2">
+        <button class="bg-black text-white rounded p-2 max-sm:p-1">Export To CSV file</button>
+    </div>
+    <div class="flex justify-center">
+        <div class="w-[40%] flex justify-evenly max-sm:w-[90%]">
+            Sort By :
+            <button (click)="sortDate()" class="bg-red-400 max-sm:p-1 p-2 rounded text-white">Due-Date</button>
+            <button  (click)="sortPriority()" class="bg-red-400 max-sm:p-1 p-2 rounded text-white">Priority</button>
+            <button (click)="sortStatus()" class="bg-red-400 max-sm:p-1 p-2 rounded text-white">Status</button>
+        </div>
+    </div>
     <ul class="m-5 bg-slate-300 rounded" *ngFor="let todo of todos">
-        <app-showtodo [todo]="todo" (todoDelete)="deleteTodo($event)" (todoEdit)="editTodo($event)" ></app-showtodo>
+        <app-showtodo [todo]="todo" (todoDelete)="deleteTodo($event)" (todoEdit)="editTodo($event)"></app-showtodo>
     </ul>
-    
+
 </div>
 <div *ngIf="toggle === 0" class="">
-    <app-edit-todo></app-edit-todo>
+    <app-edit-todo [todo]="todos[editIndex]" (editTodo)="editList($event)"></app-edit-todo>
 </div>
-

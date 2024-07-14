@@ -25,7 +25,16 @@ export class TodoheadComponent {
       priority:this.priority,
       status:"to-do"
     }
-    this.addTodo.emit(value);
+    if(this.title && this.description && this.date && this.priority ){
+      this.addTodo.emit(value);
+    }else{
+      alert("Please fill all fields!")
+    }
+    
+    this.title="";
+    this.description="";
+    this.date="";
+    this.priority="";
   }
   constructor(){
     
