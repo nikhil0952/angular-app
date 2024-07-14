@@ -1,0 +1,28 @@
+<li class="flex justify-between p-2">
+    <div class="w-[60%] text-center ">
+        <div>
+            {{todo.title}}
+        </div>
+        <div>
+            {{todo.description}}
+        </div>
+    </div>
+    <div class="w-[40%]">
+        <div class="flex justify-evenly ">
+            <button (click)="onEditClick(todo)" class="bg-green-800 w-[40%] max-sm:p-1 max-sm:w-fit text-white">Edit</button>
+            <button 
+            (click)="onClick(todo)"
+            class="bg-red-700 w-[40%] max-sm:p-1 max-sm:w-fit text-white">Delete</button>
+        </div>
+        <div class="flex justify-evenly max-sm:text-sm max-sm:flex-col text-center ">
+            <div class="max-sm:flex max-sm:flex-col">
+                Priotrity:
+                <span>{{todo.priority}}</span>
+            </div>
+            <div class="max-sm:flex max-sm:flex-col">
+                Status:
+                <span>{{todo.status}}</span>
+            </div>
+        </div>
+    </div>
+</li>

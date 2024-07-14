@@ -1,0 +1,32 @@
+<div class="flex">
+    <form (ngSubmit)="onSubmit()"  class=" w-[100%] flex flex-col justify-evenly  p-1 h-[30vh]">
+        <div class="text-center">
+            <input 
+            type="text" [(ngModel)]="title" name="title" class=" w-[90%] border p-2"
+            placeholder="Title"
+            />
+        </div>
+        <div class="text-center">
+            <input type="text" [(ngModel)]="description" name="description" class=" border w-[90%] h-20 p-2" 
+            placeholder="Description"
+            />
+        </div>
+        <div class="flex max-sm:flex-col max-sm:text-center justify-evenly ">
+            <div>
+                Due Date:
+                <input [(ngModel)]="date" name="date" type="date" />
+            </div>
+            <div>
+                Priority:
+                <input type="radio" [(ngModel)]="priority" name="priority" value="Low">Low
+                <input type="radio" [(ngModel)]="priority" name="priority" value="Medium">Medium
+                <input type="radio" [(ngModel)]="priority" name="priority" value="High">High
+            </div>
+        </div>
+        <div class=" text-center">
+            <button type="submit"
+            class="bg-[#0077B5] text-white font-bold text-xl w-[90%] p-2"
+            >Add Todo</button>
+        </div>
+    </form>
+</div>
