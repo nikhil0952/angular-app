@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { TodoheadComponent } from './Mycomponents/todohead/todohead.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Todo } from './Todo';
+import { Todo,history } from './Todo';
 import { ShowtodoComponent } from './Mycomponents/showtodo/showtodo.component';
 import { EditTodoComponent } from './Mycomponents/edit-todo/edit-todo.component';
 
@@ -19,9 +19,14 @@ export class AppComponent implements OnInit {
   localTodos: string | null = null;
   title = 'todoApp';
   todos: Todo[] = [];
-  editIndex = 1
+  editIndex = 1;
+  historyIndex = 0;
+  dataHistory:history[];
 
-  constructor() { }
+  constructor() { 
+    
+    
+  }
 
   ngOnInit(): void {
     if (typeof window !== 'undefined') {
@@ -40,14 +45,21 @@ export class AppComponent implements OnInit {
 
     this.todos = this.todos.filter(todo => todo.sn !== event.sn);
     localStorage.setItem("todos", JSON.stringify(this.todos));
+    console.log(this.todos);
   }
 
   addlist(value: Todo) {
     console.log("Hello server");
     let len = this.todos.length;
     value.sn = len + 1;
-    console.log(value);
+    
+    
+    value.todoHistory.push({
+      timestamp: new Date(),
+      action: 'New Todo Created',
+    });
     this.todos.push(value);
+    console.log(value);
     localStorage.setItem("todos", JSON.stringify(this.todos));
   }
 
@@ -59,9 +71,17 @@ export class AppComponent implements OnInit {
   }
   editList(value: Todo) {
 
-    console.log(value);
+    
+    if(value != undefined){
+      value.todoHistory.push({
+        timestamp: new Date(),
+        action: 'Edited todo successfully!',
+      });
+    }
     localStorage.setItem("todos", JSON.stringify(this.todos));
     this.toggle = 1;
+    
+    
 
   }
 
@@ -134,8 +154,21 @@ export class AppComponent implements OnInit {
     window.URL.revokeObjectURL(url);
   }
   convertToCSV(tasks: Todo[]): string {
-    const headers = 'Title Description Date Priority Status\n';
+    const headers = 'Title, Description, Date,  Priority, Status\n';
     const rows = tasks.map(task => `${task.title},${task.description},${task.date},${task.priority},${task.status}`).join('\n');
     return headers + rows;
+  }
+
+  showHistory(value:Todo){
+    this.toggle = 2;
+    console.log(value);
+   
+    this.historyIndex = this.todos.findIndex(todo => todo.sn === value.sn);
+    console.log(this.historyIndex);
+    this.dataHistory = this.todos[this.historyIndex].todoHistory;
+    
+  }
+  moveBack(){
+    this.toggle=1;
   }
 }

@@ -16,6 +16,7 @@ export class ShowtodoComponent {
   @Input() todo!: Todo;
   @Output() todoDelete: EventEmitter<Todo> = new EventEmitter();
   @Output() todoEdit: EventEmitter<Todo> = new EventEmitter();
+  @Output() historyLog: EventEmitter<Todo> = new EventEmitter();
 
   myVar:string
   if(todo){
@@ -27,5 +28,9 @@ export class ShowtodoComponent {
   }
   onEditClick(todo:Todo){
     this.todoEdit.emit(todo);
+  }
+  historyClick(todo:Todo){
+    console.log("history");
+    this.historyLog.emit(todo);
   }
 }

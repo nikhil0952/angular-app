@@ -23,7 +23,8 @@ export class TodoheadComponent {
       description:this.description,
       date:this.date,
       priority:this.priority,
-      status:"to-do"
+      status:"to-do",
+      todoHistory:[]
     }
     if(this.title && this.description && this.date && this.priority ){
       this.addTodo.emit(value);

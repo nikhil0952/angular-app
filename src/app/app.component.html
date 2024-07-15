@@ -4,7 +4,7 @@
         <button class="bg-black text-white rounded p-2 max-sm:p-1">Export To CSV file</button>
     </div>
     <div class="flex justify-center">
-        <div class="w-[40%] flex justify-evenly max-sm:w-[90%]">
+        <div class="w-[30%] max-lg:w-[45%] flex justify-evenly max-sm:w-[90%]">
             Sort By :
             <button (click)="sortDate()" class="bg-red-400 max-sm:p-1 p-2 rounded text-white">Due-Date</button>
             <button  (click)="sortPriority()" class="bg-red-400 max-sm:p-1 p-2 rounded text-white">Priority</button>
@@ -12,10 +12,25 @@
         </div>
     </div>
     <ul class="m-5 bg-slate-300 rounded" *ngFor="let todo of todos">
-        <app-showtodo [todo]="todo" (todoDelete)="deleteTodo($event)" (todoEdit)="editTodo($event)"></app-showtodo>
+        <app-showtodo [todo]="todo" (todoDelete)="deleteTodo($event)" (todoEdit)="editTodo($event)" (historyLog)="showHistory($event)"></app-showtodo>
     </ul>
 
 </div>
 <div *ngIf="toggle === 0" class="">
-    <app-edit-todo [todo]="todos[editIndex]" (editTodo)="editList($event)"></app-edit-todo>
+    <app-edit-todo [todo]="todos[editIndex]" (editTodo)="editList($event) "></app-edit-todo>
+</div>
+<div *ngIf="toggle === 2" class="p-5">
+    <div class=" font-bold">History Log : </div>
+    <ul *ngFor="let data of dataHistory">
+        
+        <li  class="flex p-2">
+            <div class=" w-[30%] ">Action : 
+                <span>{{data.action}}</span>
+            </div>
+            <div>Time : 
+                <span>{{data.timestamp}}</span>
+            </div>
+        </li>
+    </ul>
+    <button (click)="moveBack()" class="bg-black text-white w-[20%]" >Back</button>
 </div>

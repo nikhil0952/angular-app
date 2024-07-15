@@ -1,32 +1,52 @@
 <li class="flex justify-between p-2">
-    <div class="w-[60%] text-center ">
-        <div>
-            {{todo.title}}
+    <div class="w-[100%] flex max-sm:flex-col ">
+        <div class="flex flex-col max-sm:flex-row max-sm:w-[100%]  w-[18%]">
+            <div class="  p-1 border text-center">
+                Due-date :
+            </div>
+            <div class="  text-center font-semibold   p-1 ">
+                {{todo.date}}
+            </div>
         </div>
-        <div>
-            {{todo.description}}
+        <div class="flex flex-col max-sm:flex-row max-sm:w-[100%] w-[13%]">
+            <div class="p-1 border text-center">
+                Priority :
+            </div>
+            <div class=" text-center font-semibold p-1 ">
+                {{todo.priority}}
+            </div>
         </div>
+        <div class="flex flex-col max-sm:flex-row max-sm:w-[100%] w-[12%]">
+            <div class=" p-1 border text-center">
+                Status :
+            </div>
+            <div class="p-1 font-semibold text-center ">
+                {{todo.status}}
+            </div>
+        </div>
+        <div class="flex flex-col  max-sm:w-[100%] w-[50%] ">
+            <div class=" text-center max-sm:text-left font-bold  p-1">
+                {{todo.title}}
+            </div>
+            <div class=" text-center max-sm:text-left italic  p-1 ">
+                {{todo.description}}
+            </div>
+        </div>
+        
+       
+        
+        <div class="p-2 w-[15%] max-sm:w-[100%]">
+            <div class="flex justify-evenly ">
+                <button (click)="onEditClick(todo)" class="bg-green-800 w-[40%] max-lg:w-fit max-sm:w-[40%]  p-1  text-white">Edit</button>
+                <button 
+                (click)="onClick(todo)"
+                class="bg-red-700  p-1 w-[40%] max-lg:w-fit max-sm:w-[40%] text-white">Delete</button>
+            </div>
+            <div class="bg-black text-white m-1 text-center">
+                <button (click)="historyClick(todo)">History</button>
+            </div>
+        </div>
+
     </div>
-    <div class="w-[40%]">
-        <div class="flex justify-evenly ">
-            <button (click)="onEditClick(todo)" class="bg-green-800 w-[40%] max-sm:p-1 max-sm:w-fit text-white">Edit</button>
-            <button 
-            (click)="onClick(todo)"
-            class="bg-red-700 w-[40%] max-sm:p-1 max-sm:w-fit text-white">Delete</button>
-        </div>
-        <div class="flex justify-evenly max-sm:text-sm max-sm:flex-col text-center ">
-            <div class="max-sm:flex max-sm:flex-col">
-                Priotrity:
-                <span>{{todo.priority}}</span>
-            </div>
-            <div class="max-sm:flex max-sm:flex-col">
-                Status:
-                <span>{{todo.status}}</span>
-            </div>
-            <div class="max-sm:flex max-sm:flex-col">
-                due:
-                <span>{{todo.date}}</span>
-            </div>
-        </div>
-    </div>
+   
 </li>
